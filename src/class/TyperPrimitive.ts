@@ -1,4 +1,4 @@
-import { type TyperBase } from "../types/types.ts";
+import { type TyperBase } from "../types/types.js";
 
 export class TyperPrimitive<T extends (readonly any[] | null)> implements TyperBase {
     //@ts-expect-error
