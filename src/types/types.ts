@@ -30,6 +30,7 @@ export type TyperToType<T extends TyperBase> =
     : T extends TyperArray<readonly (TyperPrimitive<any>|TyperObject<any>)[] | null> ?
         T['list'] extends readonly (TyperPrimitive<any>|TyperObject<any>)[] ? TyperToType<T['list'][number]>[] : any[]
     : T extends TyperUnion<readonly (TyperPrimitive<any>|TyperObject<any>)[]> ? TyperToType<T['list'][number]>
-    : T extends TyperObject<Readonly<TyperObjectOption>> ? {[K in keyof T['option']]: TyperToType<T['option'][K]>}
+    : T extends TyperObject<Readonly<TyperObjectOption> | null> ? 
+        T['option'] extends TyperObjectOption ? {[K in keyof T['option']]: TyperToType<T['option'][K]>} : object
     : T extends TyperUndefined ? undefined
     : never

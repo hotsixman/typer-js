@@ -6,4 +6,12 @@ export class TyperNull extends TyperPrimitive<null>{
     constructor(){
         super(null);
     }
+
+    check(value: any): boolean{
+        if(value === null){
+            return true;
+        }
+
+        return false;
+    }
 }

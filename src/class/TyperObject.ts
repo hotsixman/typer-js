@@ -1,6 +1,6 @@
-import { TyperBase, TyperObjectOption } from "../types/types.ts";
+import { TyperBase, TyperObjectOption } from "../types/types.js";
 
-export class TyperObject<T extends Readonly<TyperObjectOption>> implements TyperBase{
+export class TyperObject<T extends Readonly<TyperObjectOption> | null> implements TyperBase{
     option: T;
     constructor(option: T){
         this.option = option;
@@ -9,6 +9,10 @@ export class TyperObject<T extends Readonly<TyperObjectOption>> implements Typer
     check(value: any): boolean {
         if(typeof(value) !== "object"){
             return false;
+        }
+
+        if(this.option === null){
+            return true;
         }
 
         const valueKeys = Object.keys(value);
