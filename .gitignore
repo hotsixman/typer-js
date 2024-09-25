@@ -1,0 +1,4 @@
+tests
+*.js
+*.map
+*.d.ts
